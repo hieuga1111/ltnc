@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/layout/index"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <link rel=”stylesheet”
+          href=”https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css”>
+    <meta charset="UTF-8">
+    <title>Thêm thể loại con</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+
+    <!-- Basic form layout section start -->
+    <section id="horizontal-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4 class="card-title" id="horz-layout-basic text-center">Thêm thể loại con</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="px-3">
+                            <form class="form form-horizontal"
+                                  action="#" th:action="@{/admin/bookcategory/addRequest}"
+                                  th:object="${addBookCategory}"
+                                  method="post">
+                                <div class="form-body">
+                                    </h4>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control">Tên thể loại: </label>
+                                        <div class="col-md-9">
+                                            <input th:field="*{name}" class="form-control"
+                                                   type="text"
+                                            >
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+
+
+                                        <label class="col-md-3 label-control">Thể loại cha: </label>
+                                        <div class="col-md-9">
+                                            <select id="parent_id" name="parent_id"
+                                                    class="form-control" th:field="*{category}" data-live-search=”true”>
+                                                <option value="0">Không có thể loại cha
+                                                </option>
+                                                <option th:each="category : ${categories}" th:value="${category.id}"
+                                                        th:text="${category.name}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control">Trạng thái: </label>
+                                        <div class="col-md-9">
+
+                                            <select id="isActive" name="isActive"
+                                                    class="form-control" th:field="*{status}">
+                                                <option value="0" selected="" disabled="">Chọn trạng thái cho danh
+                                                    mục
+                                                </option>
+                                                <option value=0>Không kích hoạt</option>
+                                                <option value=1>Kích hoạt</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="form-actions text-center">
+                                    <button type="button" class="btn btn-danger mr-1">
+                                        <i class="ft-x"></i> Làm mới
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-check-square-o"></i> Lưu
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- // Basic form layout section end -->
+
+</div>
+
+
+</body>
+</html>

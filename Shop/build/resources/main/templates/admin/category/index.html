@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/layout/index"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Shop MTA- Thể loại</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+
+    <section id="extended">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title" style="display:inline-block;">
+                            <select id="size"
+                                    class="form-control" >
+                                <option value="5" selected="">5</option>
+                                </option>
+                                <option value=10>10</option>
+                                <option value=15>15</option>
+                                <option value=20>20</option>
+                                <option value=25>25</option>
+                                <option value=30>50</option>
+                                <option value=35>100</option>
+
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+
+                            <input onSubmit="return false;" id="search_value" type="text" placeholder="Tìm kiếm" class="form-control round"/>
+                        </div>
+
+                        <a type="button" name="add" id="add" class="btn btn-primary pull-right"
+                           style="display: inline-block" href="/admin/category/add">Thêm thể loại
+                        </a>
+                    </div>
+                    <div class="card-body" id="data_table">
+                        <div class="card-block" th:fragment="data_table">
+                            <table class="table table-responsive-md-md text-center">
+                                <thead>
+                                <tr>
+                                    <th>Tên thể loại</th>
+                                    <th>Trạng thái</th>
+                                    <th>Tác vụ</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="category : ${page.content}">
+
+                                    <td th:text="${category.name}" class="text-center"></td>
+                                    <td th:text="${category.status}==true ? 'Hiển thị':'Không hiển thị'" class="text-center"></td>
+                                    <td class="text-center">
+                                        <a class="info mr-1"
+                                           th:href="@{/admin/category/detail?id={id}(id=${category.id})}">
+                                            Chi tiết
+                                        </a>
+                                        <a class="success mr-1"
+                                           th:href="@{/admin/category/detail?id={id}(id=${category.id})}">
+                                            Sửa
+                                        </a>
+                                        <a class="danger mr-1"
+                                           th:href="@{/admin/category/detail?id={id}(id=${category.id})}">
+                                            Xóa
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <nav aria-label="Page navigation mb-3">
+                                <ul class="pagination justify-content-center" th:if="${page.totalPages > 0}">
+                                    <li class="page-item" th:classappend="${page.number eq 0} ? 'disabled'">
+                                        <a class="page-link"
+                                           th:href="@{?page={id}(id=${page.number lt 2 ? 1 : page.number})}"
+                                           aria-label="Previous">
+                                            <span aria-hidden="true">« Trước</span>
+                                            <span class="sr-only">Trước</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item" th:classappend="${i eq page.number + 1} ? 'active'"
+                                        th:each="i : ${pageNumbers}">
+                                        <a class="page-link" th:href="@{?page={id}(id=${i})}" th:text="${i}"
+                                           th:title="${'Page '+ i}"
+                                           rel="tooltip"></a>
+                                    </li>
+                                    <li class="page-item"
+                                        th:classappend="${page.number + 1 eq page.totalPages} ? 'disabled'">
+                                        <a class="page-link" th:href="@{?page={id}(id=${page.number + 2})}"
+                                           aria-label="Next">
+                                            <span aria-hidden="true">Tiếp »</span>
+                                            <span class="sr-only">Tiếp</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<th:block layout:fragment="scripts">
+    <script>
+        function refreshDataTable(page, size) {
+            $.ajax({
+                type: 'post',
+                url: '/admin/category',
+                data:{
+                    page: page,
+                    size: size
+                },
+                success: function (data) {
+                    $('.data_table').html(data);
+                },
+
+            })
+
+        }
+
+    </script>
+</th:block>
+
+</body>
+</html>

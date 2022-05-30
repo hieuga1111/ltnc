@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="https://www.thymeleaf.org">
+<body>
+<th:block th:fragment="footer">
+     <style>
+          .footer-wrap {
+               background: #e1e1e1;
+               border-top: 1px solid #e0e4f6;
+          }
+          .f-menu-list {
+               margin-bottom: 20px;
+               padding-top: 30px;
+          }
+
+          .f-menu-list .f-menu {
+               float: left;
+               width: 18.75%;
+               padding: 0 15px;
+               margin: 0 0 25px;
+          }
+
+          .f-menu-list .f-menu h3 {
+               color: #373d54;
+               font-size: 16px;
+               font-weight: 500;
+               margin-bottom: 15px;
+               text-transform: uppercase;
+          }
+
+          .f-menu-list .f-menu ul li a {
+               color: #616161;
+               font-size: 14px;
+               font-weight: 300;
+               padding: 5px 0;
+          }
+
+          .f-menu-list .f-menu ul li a i {
+               margin-right: 18px;
+          }
+
+          .f-menu-list .f-menu ul li a:hover {
+               background: none;
+               color: #3a89cf;
+          }
+
+          .f-menu-list .f-menu ul li a {
+               color: #373d54;
+               background-color: transparent;
+               border-radius: 0;
+          }
+
+          .f-menu-list .f-menu ul li a:hover {
+               color: #3a89cf;
+               background-color: transparent;
+          }
+
+          .f-menu-list .f-menu ul li.active a {
+               color: #3a89cf;
+          }
+
+          .f-subscribe {
+               float: left;
+               width: 25%;
+               padding: 0 15px;
+               margin: 0 0 10px;
+          }
+
+          .f-subscribe h3 {
+               color: #373d54;
+               font-size: 16px;
+               font-weight: 500;
+               margin-bottom: 15px;
+               text-transform: uppercase;
+          }
+
+          .f-subscribe-form {
+               position: relative;
+          }
+
+          .f-subscribe-form input[type=text] {
+               border: 1px solid #e0e4f6;
+               color: #373d54;
+               font-family: 'Roboto', sans-serif;
+               font-size: 14px;
+               margin-top: 0;
+               outline: none;
+               padding: 7px 50px 7px 12px;
+               width: 100%;
+               max-width: 100%;
+               transition: all 0.2s;
+          }
+
+          .f-subscribe-form input[type=text]:focus {
+               border-color: #d1d5e5;
+          }
+
+          .f-subscribe-form input[type=text]::-webkit-input-placeholder {
+               color: #c7cbdc;
+          }
+
+          .f-subscribe-form input[type=text]::-moz-placeholder {
+               color: #c7cbdc;
+               opacity: 1;
+          }
+
+          .f-subscribe-form input[type=text]:-ms-input-placeholder {
+               color: #c7cbdc;
+          }
+
+          .f-subscribe-form button {
+               background: #313b54;
+               border: none;
+               border-radius: 0;
+               line-height: 1;
+               padding: 7px 17px 8px;
+               transition: all 0.2s;
+               color: #fff;
+               height: 35px;
+               display: block;
+               position: absolute;
+               top: 0;
+               right: 0;
+          }
+
+          .f-subscribe-form button i {
+               font-size: 14px;
+          }
+
+          .f-subscribe-form button:hover,
+          .f-subscribe-form button:focus {
+               background: #404d6e;
+               color: #fff;
+          }
+
+          .f-subscribe p {
+               margin-top: 13px;
+               color: #acadae;
+               font-size: 12px;
+               font-weight: 300;
+          }
+
+          .footer-bottom {
+               background: #eff1fa;
+               border-top: 1px solid #e0e4f6;
+          }
+
+          .footer-bottom p {
+               color: #373d54;
+               font-size: 14px;
+          }
+
+          .footer-bottom p span a {
+               color: #28a906;
+               font-style: italic;
+               text-decoration: underline;
+          }
+
+          .footer-copyright {
+               margin: 10px 0 0 15px;
+               float: left;
+          }
+
+          .footer-bottom #bx-composite-banner {
+               text-align: center;
+               margin: 5px 0;
+          }
+          .f-menu ul{
+               list-style: none;
+               padding: 0;
+          }
+          .footer-bottom{
+               background: #4c4f5a;
+               color:#fff;
+          }
+          .footer-bottom ul li a i{
+               color: #fff;
+          }
+     </style>
+     <footer class="footer-wrap">
+
+
+          <div class="container f-menu-list">
+               <div class="row">
+                    <div class="f-menu">
+                         <h3>
+                              Về chúng tôi
+                         </h3>
+                         <ul class="">
+                              <li class="active"><a th:href="@{/home/index}">Trang chủ</a></li>
+                              <li><a href="catalog-list.html">Liên hệ</a></li>
+                              <li><a href="elements.html">Hướng dẫn</a></li>
+                              <li><a href="blog.html">Phản hồi</a></li>
+                              <li><a href="blog.html">Khác</a></li>
+
+                         </ul>
+                    </div>
+                    <div class="f-menu">
+                         <h3>
+                              Sản phẩm
+                         </h3>
+                         <ul class="">
+                              <li><a href="catalog-list.html">Mũ bảo hiểm</a></li>
+                              <li><a href="catalog-list.html">Bảo hộ mô tô</a></li>
+                              <li><a href="catalog-list.html">Găng tay chống nắng</a></li>
+                              <li><a href="catalog-list.html">Khăn rằng</a></li>
+                              <li><a href="catalog-list.html">Đồ đi mưa</a></li>
+                         </ul>
+                    </div>
+                    <div class="f-menu">
+                         <h3>
+                              Các chi nhánh
+                         </h3>
+                         <ul class="">
+                              <li><a href="blog.html">Hà Nội</a></li>
+                              <li><a href="reviews.html">Hưng Yên</a></li>
+                              <li><a href="blog.html">Đà Nẵng</a></li>
+                              <li><a href="contacts.html">Hồ Chí Minh</a></li>
+                              <li><a href="contacts.html">Cần Thơ</a></li>
+
+                         </ul>
+                    </div>
+                    <div class="f-menu">
+                         <h3>
+                              Báo chí
+                         </h3>
+                         <ul class="">
+                              <li><a href="blog.html">Báo Vĩnh Long</a></li>
+                              <li><a href="reviews.html">Báo Tiền Phong</a></li>
+                              <li><a href="blog.html">VNExpress</a></li>
+                              <li><a href="contacts.html">Dantri</a></li>
+                              <li><a href="contacts.html">Kenh14</a></li>
+
+                         </ul>
+                    </div>
+                    <div class="f-subscribe">
+                         <h3>Đăng ký để nhận tin mới nhất!</h3>
+                         <form class="f-subscribe-form" action="#">
+                              <input placeholder="Email của bạn" type="text">
+                              <button type="submit"><i class="fa fa-paper-plane"></i></button>
+                         </form>
+                         <p>Điền email của bạn để nhận những tài liệu mới nhất. Đăng ký ngay!</p>
+                    </div>
+               </div>
+          </div>
+
+          <div class="footer-bottom">
+               <div class="container">
+                    <div style="display: flex;justify-content: space-between">
+                         <div class="footer-copyright" style="margin: 0">
+                              <i><a href="https://themeforest.net/user/real-web?ref=real-web" style="color: #fff">Nhóm phát triển phần mềm MTA</a></i> © Copyright 2021
+                         </div>
+                         <ul class="" style="list-style: none;display: flex;margin: 0;color:#fff;">
+                              <li>
+                                   <a href="http://facebook.com/" rel="nofollow" target="_blank">
+                                        <i class="fa fa-facebook"></i>
+                                   </a>
+                              </li>
+                              <li>
+                                   <a href="http://google.com/" rel="nofollow" target="_blank">
+                                        <i class="fa fa-google-plus"></i>
+                                   </a>
+                              </li>
+                              <li>
+                                   <a href="http://twitter.com/" rel="nofollow" target="_blank">
+                                        <i class="fa fa-twitter"></i>
+                                   </a>
+                              </li>
+                              <li>
+                                   <a href="http://vk.com/" rel="nofollow" target="_blank">
+                                        <i class="fa fa-vk"></i>
+                                   </a>
+                              </li>
+                              <li>
+                                   <a href="http://instagram.com/" rel="nofollow" target="_blank">
+                                        <i class="fa fa-instagram"></i>
+                                   </a>
+                              </li>
+                         </ul>
+
+                    </div>
+               </div>
+          </div>
+
+     </footer>
+<!-- *** COPYRIGHT END ***-->
+<!-- JavaScript files-->
+
+<script src="/client/vendor/popper.js/umd/popper.min.js"></script>
+<script src="/client/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/client/vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="/client/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="/client/js/front.js"></script>
+</th:block>
+</body>
+</html>

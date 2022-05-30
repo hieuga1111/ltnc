@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="https://www.thymeleaf.org">
+<body>
+<li class="discounts-i" th:fragment="card (book)">
+    <a  th:href="@{/book-by/filtered-by-author(select_author=${book.authorId})}" class="discounts-i-img">
+        <img th:src="@{'/client/images/' + ${book.listImages[0].link}}" alt="">
+    </a>
+    <h3 class="discounts-i-ttl">
+        <a  th:text="${book.name}"  th:href="@{/book-by/filtered-by-author(select_author=${book.authorId})}"></a>
+    </h3>
+    <p class="discounts-i-price">
+        <b>Free</b> <del th:text="${#numbers.formatDecimal(book.promotionPrice, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></del>
+    </p>
+</li>
+
+</body>
+</html>

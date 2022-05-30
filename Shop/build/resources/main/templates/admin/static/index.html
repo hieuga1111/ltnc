@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/layout/index"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Thống kê</title>
+    <th:block layout:fragment="styles">
+        <link rel="stylesheet" type="text/css" href="/asset-admin-custom/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css">
+        <link rel="stylesheet" type="text/css" href="/asset-admin-custom/app-assets/css/plugins/forms/pickers/form-flat-pickr.css">
+    </th:block>
+</head>
+<body>
+<div layout:fragment="main-content" id="chartjs-chart">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h4 class="card-title">Thống kê doanh thu</h4>
+                        <span class="card-subtitle text-muted">Doanh thu shop tháng 5/2021</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <canvas class="line-chart-ex chartjs" data-height="450"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<th:block layout:fragment="scripts">
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="/asset-admin-custom/app-assets/vendors/js/charts/chart.min.js"></script>
+    <script src="/asset-admin-custom/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
+    <!-- END: Page Vendor JS-->
+    <script src="/asset-admin-custom/app-assets/js/scripts/charts/chart-chartjs.js"></script>
+</th:block>
+</body>
+</html>

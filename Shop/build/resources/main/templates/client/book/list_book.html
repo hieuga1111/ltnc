@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="https://www.thymeleaf.org">
+<body>
+<hr />
+<!--<div th:fragment="list_book (listBook,namePath)" class="container">
+     <div class="box text-primary text-center font-weight-bold bg-light"> <h1 th:text="${namePath == null ? '' : namePath}"></h1></div>
+     <div class="row same-height-row">
+
+          <th:block th:each="b : ${listBook}">
+               <div th:replace="client/book/card :: card (book=${b})"></div>
+          </th:block>
+
+     </div>
+</div>-->
+<div th:fragment="list_book (listBook,namePath)" class="container">
+     <div class="fr-pop-wrap">
+          <h3 class="component-ttl"><span th:text="${namePath==null ?'':namePath}"></span></h3>
+          <ul class="fr-pop-tabs sections-show">
+               <li><a data-frpoptab-num="1" data-frpoptab="#frpoptab-tab-1" href="#" class="active">Tất cả</a></li>
+               <!--<li><a data-frpoptab-num="2" data-frpoptab="#frpoptab-tab-2" href="#">Toán cấp 1</a></li>
+               <li><a data-frpoptab-num="3" data-frpoptab="#frpoptab-tab-3" href="#">Toán cấp 2</a></li>
+               <li><a data-frpoptab-num="4" data-frpoptab="#frpoptab-tab-4" href="#">Toán cấp 3</a></li>
+               <li><a data-frpoptab-num="5" data-frpoptab="#frpoptab-tab-5" href="#">Khác</a></li>-->
+          </ul>
+          <div class="fr-pop-tab-cont">
+               <p data-frpoptab-num="1" class="fr-pop-tab-mob active" data-frpoptab="#frpoptab-tab-1">Tất cả</p>
+               <div class="flexslider prod-items fr-pop-tab" id="frpoptab-tab-1">
+                    <ul class="slides">
+                         <th:block th:each="b : ${listBook}">
+                              <div th:replace="client/book/card :: card (book=${b})"></div>
+                         </th:block>
+
+                    </ul>
+               </div>
+          </div>
+</div>
+<th:block th:fragment="jsFooter">
+     <script>
+          addcartitem.init();
+     </script>
+</th:block>
+</body>
+</html>

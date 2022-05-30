@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/layout/index"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Shop MTA- Trang quản trị hệ thống</title>
+</head>
+<body>
+<div layout:fragment="main-content" id="dashboard-ecommerce">
+    <div class="row match-height">
+        <!-- Medal Card -->
+        <div class="col-xl-4 col-md-6 col-12">
+            <div class="card card-congratulation-medal">
+                <div class="card-body">
+                    <h5>Chúc mừng 🎉 BinhHoangStore!</h5>
+                    <p class="card-text font-small-3">Hệ thống đã đạt doanh thu 50% so với quý trước!</p>
+                    <h3 class="mb-75 mt-2 pt-50">
+                        <a href="javascript:void(0);">$48.9k</a>
+                    </h3>
+                    <button type="button" class="btn btn-primary">Xem chi tiết</button>
+                    <img src="/asset-admin-custom/app-assets/images/illustration/badge.svg" class="congratulation-medal" alt="Medal Pic" />
+                </div>
+            </div>
+        </div>
+        <!--/ Medal Card -->
+
+        <!-- Statistics Card -->
+        <div class="col-xl-8 col-md-6 col-12">
+            <div class="card card-statistics">
+                <div class="card-header">
+                    <h4 class="card-title">Thống kê</h4>
+                    <div class="d-flex align-items-center">
+                        <p class="card-text font-small-2 mr-25 mb-0">Cập nhật 1 giờ trước</p>
+                    </div>
+                </div>
+                <div class="card-body statistics-body">
+                    <div class="row">
+                        <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
+                            <div class="media">
+                                <div class="avatar bg-light-primary mr-2">
+                                    <div class="avatar-content">
+                                        <i data-feather="trending-up" class="avatar-icon"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body my-auto">
+                                    <h4 class="font-weight-bolder mb-0" th:text="${order_count}"></h4>
+                                    <p class="card-text font-small-3 mb-0">Lượt đặt</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
+                            <div class="media">
+                                <div class="avatar bg-light-info mr-2">
+                                    <div class="avatar-content">
+                                        <i data-feather="user" class="avatar-icon"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body my-auto">
+                                    <h4 class="font-weight-bolder mb-0" th:text="${user_count}">8.549k</h4>
+                                    <p class="card-text font-small-3 mb-0">Người dùng</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-sm-0">
+                            <div class="media">
+                                <div class="avatar bg-light-danger mr-2">
+                                    <div class="avatar-content">
+                                        <i data-feather="box" class="avatar-icon"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body my-auto">
+                                    <h4 class="font-weight-bolder mb-0" th:text="${category_count}">1.423k</h4>
+                                    <p class="card-text font-small-3 mb-0">Thể loại</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="media">
+                                <div class="avatar bg-light-success mr-2">
+                                    <div class="avatar-content">
+                                        <i data-feather="dollar-sign" class="avatar-icon"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body my-auto">
+                                    <h4 class="font-weight-bolder mb-0" th:text="${book_count}">$9745</h4>
+                                    <p class="card-text font-small-3 mb-0">Sản phẩm</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ Statistics Card -->
+    </div>
+    <div class="row match-height">
+        <div class="col-lg-4 col-12">
+            <div class="row match-height">
+                <!-- Bar Chart - Orders -->
+                <div class="col-lg-6 col-md-3 col-6">
+                    <div class="card">
+                        <div class="card-body pb-50">
+                            <h6>Lũy kế</h6>
+                            <h2 class="font-weight-bolder mb-1">2,76k</h2>
+                            <div id="statistics-order-chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Bar Chart - Orders -->
+
+                <!-- Line Chart - Profit -->
+                <div class="col-lg-6 col-md-3 col-6">
+                    <div class="card card-tiny-line-stats">
+                        <div class="card-body pb-50">
+                            <h6>Lợi nhuận</h6>
+                            <h2 class="font-weight-bolder mb-1">6,24k</h2>
+                            <div id="statistics-profit-chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Line Chart - Profit -->
+
+                <!-- Earnings Card -->
+                <div class="col-lg-12 col-md-6 col-12">
+                    <div class="card earnings-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h4 class="card-title mb-1">Doanh thu</h4>
+                                    <div class="font-small-2">Tháng hiện tại</div>
+                                    <h5 class="mb-1">$4055.56</h5>
+                                    <p class="card-text text-muted font-small-2">
+                                        <span class="font-weight-bolder">68.2%</span><span> so với cùng kì tháng trước.</span>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <div id="earnings-chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Earnings Card -->
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">Định hướng phát triển</h4>
+                    <i data-feather="help-circle" class="font-medium-3 text-muted cursor-pointer"></i>
+                </div>
+                <div class="card-body p-0">
+                    <div id="goal-overview-radial-bar-chart" class="my-2"></div>
+                    <div class="row border-top text-center mx-0">
+                        <div class="col-6 border-right py-1">
+                            <p class="card-text text-muted mb-0">Hoàn thành</p>
+                            <h3 class="font-weight-bolder mb-0">78,6%</h3>
+                        </div>
+                        <div class="col-6 py-1">
+                            <p class="card-text text-muted mb-0">Tiến độ còn lại</p>
+                            <h3 class="font-weight-bolder mb-0">21,4%</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="card card-transaction">
+                <div class="card-header">
+                    <h4 class="card-title">Giao dịch</h4>
+                    <div class="dropdown chart-dropdown">
+                        <i data-feather="more-vertical" class="font-medium-3 cursor-pointer" data-toggle="dropdown"></i>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="javascript:void(0);">28 ngày trước</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Quý trước</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Năm trước</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="transaction-item">
+                        <div class="media">
+                            <div class="avatar bg-light-primary rounded">
+                                <div class="avatar-content">
+                                    <i data-feather="pocket" class="avatar-icon font-medium-3"></i>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h6 class="transaction-title">Thanh toán dịch vụ băng thông</h6>
+                                <small>Starbucks</small>
+                            </div>
+                        </div>
+                        <div class="font-weight-bolder text-danger">- VNĐ 7.400.000</div>
+                    </div>
+                    <div class="transaction-item">
+                        <div class="media">
+                            <div class="avatar bg-light-success rounded">
+                                <div class="avatar-content">
+                                    <i data-feather="check" class="avatar-icon font-medium-3"></i>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h6 class="transaction-title">Lãi ngân hàng</h6>
+                                <small>MB Bank</small>
+                            </div>
+                        </div>
+                        <div class="font-weight-bolder text-danger">- VNĐ 480.000.000</div>
+                    </div>
+                    <div class="transaction-item">
+                        <div class="media">
+                            <div class="avatar bg-light-danger rounded">
+                                <div class="avatar-content">
+                                    <i data-feather="dollar-sign" class="avatar-icon font-medium-3"></i>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h6 class="transaction-title">Tiền hàng</h6>
+                                <small>Sản phẩm</small>
+                            </div>
+                        </div>
+                        <div class="font-weight-bolder text-success">+ VNĐ 5.906.000.000</div>
+                    </div>
+                    <div class="transaction-item">
+                        <div class="media">
+                            <div class="avatar bg-light-warning rounded">
+                                <div class="avatar-content">
+                                    <i data-feather="credit-card" class="avatar-icon font-medium-3"></i>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h6 class="transaction-title">Quẹt thẻ</h6>
+                                <small>Airpay</small>
+                            </div>
+                        </div>
+                        <div class="font-weight-bolder text-danger">- VNĐ 250.000.000</div>
+                    </div>
+                    <div class="transaction-item">
+                        <div class="media">
+                            <div class="avatar bg-light-info rounded">
+                                <div class="avatar-content">
+                                    <i data-feather="trending-up" class="avatar-icon font-medium-3"></i>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h6 class="transaction-title">Phí giao hàng</h6>
+                                <small>OneShip</small>
+                            </div>
+                        </div>
+                        <div class="font-weight-bolder text-success">+ VNĐ 840.000.000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card invoice-list-wrapper">
+                <div class="card-datatable table-responsive">
+                    <table class="invoice-list-table table">
+                        <thead>
+                        <tr>
+                            <th style="width: 130px;">Số thứ tự</th>
+                            <th><i data-feather="trending-up"></i></th>
+                            <th>Khách hàng</th>
+                            <th>Phản hồi</th>
+                            <th class="text-truncate">Ngày xử lý</th>
+                            <th>Trạng thái phản hồi</th>
+                            <th class="cell-fit">Tác vụ</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="width: 130px;">1</td>
+                                <td>Ưu tiên</td>
+                                <td>Ma Đình Diện</td>
+                                <td>Sản phẩm #20321 bị lỗi</td>
+                                <td>17/05/2021</td>
+                                <td>Đã phản hồi</td>
+                                <td>Đổi trả</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 130px;">2</td>
+                                <td>Ưu tiên</td>
+                                <td>Nguyễn Đình Việt</td>
+                                <td>Sản phẩm #10542 bị xước đĩa</td>
+                                <td>17/05/2021</td>
+                                <td>Chưa phản hồi</td>
+                                <td>Chưa có</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

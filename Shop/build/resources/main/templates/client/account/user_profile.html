@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="https://www.thymeleaf.org"
+      layout:decorate="~{client/shared/_layout}">
+<body>
+<th:block layout:fragment="content">
+     <div class="container">
+          <div class="row">
+               <div class="col-lg-12">
+                    <div class="box">
+                         <div class="d-flex" style="justify-content: space-between">
+                              <h1>Thông tin tài khoản</h1>
+                              <a class="btn btn-danger" th:href="@{/account/list-order}">Thông tin đơn hàng</a>
+                         </div>
+
+                         <div id="all">
+                              <div id="content">
+                                   <div class="container">
+                                        <!--                         <form  th:action="@{/account/change-profile}" method="POST" onsubmit="return checkall();" id = "form_change_profile" th:object="${user}" >-->
+                                        <form th:action="@{/rest/change-profile}" method="POST" onsubmit="return checkall();" th:object="${user}">
+                                             <!--                         <form th:action="@{/rest/change-profile}" method="POST" onsubmit="return checkall();" >-->
+                                             <div class="form-group">
+                                                  <div class="row pb-1" style="height:65px">
+                                                       <div class="col-lg-6">
+                                                            <div class="input-group">
+                                                                 <label for="">Họ tên</label>
+                                                                 <input type="text" class="form-control w-100" name="name" id="Name" placeholder="Enter your Name" th:value="*{name}"/>
+                                                            </div>
+                                                            <div class="text-danger" id="er_Name"></div>
+                                                       </div>
+                                                       <div class="col-lg-6">
+                                                            <div class="input-group">
+                                                                 <label for="">Tài khoản</label>
+                                                                 <input type="text" class="form-control w-100" name="UserName" id="UserName" placeholder="Enter your UserName" onkeyup="check('UserName');" th:value="*{userName}"/>
+
+                                                            </div>
+                                                            <div class="text-danger" id="er_Email"></div>
+                                                       </div>
+                                                  </div>
+                                                  <div class="row pb-1" style="height:65px">
+                                                       <div class="col-lg-6">
+                                                            <div class="input-group">
+                                                                 <label for="">Địa chỉ</label>
+                                                                 <input type="text" class="form-control w-100" name="address" id="Address" placeholder="Enter your address" th:value="*{address}">
+                                                            </div>
+                                                            <div class="text-danger" id="er_Address"></div>
+                                                       </div>
+                                                       <div class="col-lg-6">
+                                                            <div class="input-group">
+                                                                 <label>E-mail</label>
+                                                                 <input type="text"  class="form-control w-100" name="email" id="Email" placeholder="Enter your Email" th:value="*{email}" />
+
+                                                            </div>
+                                                            <div class="text-danger" id="er_Email"></div>
+                                                       </div>
+                                                  </div>
+                                                  <div class="row pb-1" style="height:65px">
+                                                       <div class="col-lg-6">
+                                                            <div class="input-group">
+                                                                 <label for="">Số điện thoại</label>
+                                                                 <input type="tel" class="form-control w-100" name="phone" id="Phone" placeholder="Enter your Phome number" th:value="*{phone}" />
+
+                                                            </div>
+                                                            <div class="text-danger" id="er_Phone"></div>
+                                                       </div>
+                                                       <div class="col-lg-6">
+                                                            <label for="" class="w-100">Tác vụ</label>
+                                                            <button type="submit" class="btn btn-primary">Sửa thông tin</button>
+                                                       </div>
+                                                  </div>
+
+                                             </div>
+                                        </form>
+                                   </div>
+                              </div>
+                         </div>
+                         <hr>
+                         <h1>Đổi mật khẩu</h1>
+                         <!--          <form action="@{/account/change-password}" method="GET" id="form_password">-->
+                         <form th:action="@{/rest/change-password}" id="form_password" method="POST" onsubmit="return checkall();"  >
+                              <div class="row">
+                                   <div class="col-md-6">
+                                        <div class="form-group">
+                                             <label for="password_old">Mật khẩu cũ</label>
+                                             <input id="password_old" type="password" class="form-control">
+                                        </div>
+                                        <div style="color:red" id="check_password_old"></div>
+                                   </div>
+                                   <div class="col-md-6">
+                                        <div class="form-group">
+                                             <label for="password_1">Mật khẩu mới</label>
+                                             <input id="password_1" name="password_1" type="password" class="form-control">
+                                        </div>
+                                        <div id="check_newpassword"style="color:red"></div>
+                                   </div>
+                              </div>
+                              <div class="row">
+                                   <div class="col-md-6">
+                                        <div class="form-group">
+                                             <label for="password_2">Xác nhận mật khẩu mới</label>
+                                             <input id="password_2" type="password" class="form-control">
+                                        </div>
+                                        <div style="color:red" id="check_repassword"></div>
+                                   </div>
+                                   <div class="col-md-6">
+                                        <label for="" class="w-100">Tác vụ</label>
+                                        <button class="btn btn-primary" id="btn_change_pass"><i class="fa fa-save"></i> Tạo mật khẩu mới</button>
+                                   </div>
+                              </div>
+
+                         </form>
+                         <hr>
+
+                    </div>
+               </div>
+
+          </div>
+     </div>
+     <script th:src="@{/client/js/controller/accountController.js}"></script>
+
+</th:block>
+
+</body>
+</html>

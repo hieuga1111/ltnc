@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/layout/index"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm đĩa nhạc</title>
+    <th:block layout:fragment="styles">
+        <link rel="stylesheet" type="text/css" href="/asset-admin-custom/app-assets/vendors/css/forms/wizard/bs-stepper.min.css">
+        <link rel="stylesheet" type="text/css" href="/asset-admin-custom/app-assets/vendors/css/forms/select/select2.min.css">
+        <link rel="stylesheet" type="text/css" href="/asset-admin-custom/app-assets/css/core/menu/menu-types/vertical-menu.css">
+        <link rel="stylesheet" type="text/css" href="/asset-admin-custom/app-assets/css/plugins/forms/form-validation.css">
+        <link rel="stylesheet" type="text/css" href="/asset-admin-custom/app-assets/css/plugins/forms/form-wizard.css">
+    </th:block>
+</head>
+<body>
+<div layout:fragment="main-content" class="modern-horizontal-wizard">
+    <div class="bs-stepper wizard-modern modern-wizard-example">
+        <div class="bs-stepper-header">
+
+            <div class="step" data-target="#address-step-modern">
+                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">
+                                        <i data-feather="map-pin" class="font-medium-3"></i>
+                                    </span>
+                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Thông tin cơ bản đĩa nhạc</span>
+                                        <span class="bs-stepper-subtitle">Điền các thông tin cơ bản về đĩa nhạc</span>
+                                    </span>
+                </button>
+            </div>
+            <div class="line">
+                <i data-feather="chevron-right" class="font-medium-2"></i>
+            </div>
+            <div class="step" data-target="#social-links-modern">
+                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-box">
+                                        <i data-feather="link" class="font-medium-3"></i>
+                                    </span>
+                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Thông tin chi tiết đĩa nhạc</span>
+                                        <span class="bs-stepper-subtitle">Điền các thông tin chi tiết về đĩa nhạc</span>
+                                    </span>
+                </button>
+            </div>
+        </div>
+        <div class="bs-stepper-content">
+        <form  th:action="@{/admin/book/addRequest}" th:object="${addBook}" method="post">
+            <input type="hidden" name="publishDate" value="2021-01-20">
+            <div id="address-step-modern" class="content">
+                <div class="content-header">
+                    <h5 class="mb-0">Thông tin cơ bản đĩa nhạc</h5>
+                    <small>Điền các thông tin cơ bản về đĩa nhạc</small>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="form-label" for="modern-address">Tên đĩa nhạc</label>
+                        <input type="text" th:field="*{name}" id="modern-address" class="form-control" placeholder="Tên đĩa nhạc" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="form-label" for="modern-landmark">Ca sĩ</label>
+                        <select id="modern-landmark" name="parent_id"
+                                class="form-control" value="1" th:field="*{author}">
+
+                            <option th:each="author : ${authors}" th:value="${author.id}"
+                                    th:text="${author.name}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="form-label" for="bookCategory">Thể loại</label>
+                        <select id="bookCategory" name="parent_id"
+                                class="form-control" th:field="*{bookCategory}">
+                            <option value="0" selected="" disabled="">Không
+                            </option>
+                            <option th:each="bookcategory : ${bookcategories}"
+                                    th:value="${bookcategory.id}"
+                                    th:text="${bookcategory.name}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="form-label" for="publisher">Nhà sản xuất</label>
+                        <select id="publisher"
+                                class="form-control" th:field="*{publisher}">
+                            <option value="0" selected="" disabled="">Không
+                            </option>
+                            <option th:each="publisher : ${publishers}" th:value="${publisher.id}"
+                                    th:text="${publisher.name}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div id="social-links-modern" class="content">
+                <div class="content-header">
+                    <h5 class="mb-0">Thông tin chi tiết đĩa nhạc</h5>
+                    <small>Điền các thông tin chi tiết về đĩa nhạc</small>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="form-label" for="modern-twitter">Thời gian sản xuất</label>
+                        <input type="date" id="modern-twitter" class="form-control" th:field="*{publishDate}" placeholder="Thời gian sản xuất" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="form-label" for="form1">Hình thức</label>
+                        <select id="form1" class="form-control" th:field="*{form}">
+                            <option value="0" selected="" disabled="">Chọn hình thức
+                            </option>
+                            <option value="Đĩa than">Đĩa than</option>
+                            <option value="Đĩa quang">Đĩa quang</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="form-label" for="modern-facebook">Số tracks</label>
+                        <input type="number" th:field="*{numberPage}" id="modern-facebook" class="form-control" placeholder="Số tracks" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="form-label" for="modern-google">Thời gian(phút)</label>
+                        <input type="number" th:field="*{weight}" id="modern-google" class="form-control" placeholder="Khối lượng" />
+                    </div>
+
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary btn-submit">Thêm đĩa nhạc</button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+
+    <!-- Basic form layout section start -->
+
+    <!-- // Basic form layout section end -->
+
+</div>
+<th:block layout:fragment="scripts">
+    <script src="/asset-admin-custom/app-assets/vendors/js/forms/wizard/bs-stepper.min.js"></script>
+    <script src="/asset-admin-custom/app-assets/vendors/js/forms/select/select2.full.min.js"></script>
+    <script src="/asset-admin-custom/app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
+    <script src="/asset-admin-custom/app-assets/js/scripts/forms/form-wizard.js"></script>
+    <script>
+
+    </script>
+</th:block>
+
+</body>
+</html>

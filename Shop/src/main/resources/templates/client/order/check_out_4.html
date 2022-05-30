@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="https://www.thymeleaf.org"
+      layout:decorate="~{client/shared/_layout}">
+<body>
+<div layout:fragment="content" id="all">
+     <div id="content">
+          <div class="container-fluid">
+               <div class="row">
+                    <div class="col-lg-12">
+                         <!-- breadcrumb-->
+                         <nav aria-label="breadcrumb">
+                              <ol class="breadcrumb">
+                                   <li class="breadcrumb-item"><a th:href="@{/home/index}">Trang chủ</a></li>
+                                   <li aria-current="page" class="breadcrumb-item active">Kiểm tra - Đơn hàng của tôi</li>
+                              </ol>
+                         </nav>
+                    </div>
+                    <div id="checkout" class="col-lg-9">
+                         <div class="box">
+                              <form th:action="@{/order/check-out-4}" method="post">
+                                   <h1>Kiểm tra - Đơn hàng của tôi</h1>
+                                   <div class="nav flex-column flex-sm-row nav-pills">
+                                        <a th:href="@{/order/check-out}" class="nav-link flex-sm-fill text-sm-center">
+                                             <i class="fa fa-map-marker"></i>Thông tin người nhận
+                                        </a>
+                                        <a th:href="@{/order/check-out-2}" class="nav-link flex-sm-fill text-sm-center">
+                                             <i class="fa fa-truck"></i>Hình thức vận chuyển
+                                        </a>
+                                        <a th:href="@{/order/check-out-3}" class="nav-link flex-sm-fill text-sm-center">
+                                             <i class="fa fa-money"></i>Hình thức thanh toán
+                                        </a>
+                                        <a th:href="@{/order/check-out-4}" class="nav-link flex-sm-fill text-sm-center active">
+                                             <i class="fa fa-eye"></i>Đơn hàng của tôi
+                                        </a>
+                                   </div>
+                                   <div class="content">
+                                        <div class="table-responsive">
+                                             <table class="table">
+                                                  <thead>
+                                                       <tr>
+                                                            <th colspan="2" style="text-align:center">Sản phẩm</th>
+                                                            <th style="text-align:center">Số lượng</th>
+                                                            <th style="text-align:right">Đơn giá</th>
+                                                            <th style="text-align:right">Khuyến mãi</th>
+                                                            <th style="text-align:center">Thành tiền</th>
+                                                       </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                      <th:block th:each="i : ${orderDetail}">
+                                                            <tr>
+                                                                 <td><a href="#"><img th:src="${'/client/images/' + i.book.image1}" th:alt="${i.book.name}"></a></td>
+                                                                 <td style="width:250px"><a href="#" th:text="${i.book.name}"></a></td>
+                                                                 <td style="text-align:center" th:text="${#strings.toString(i.quantity)}"></td>
+                                                                 <td style="text-align:right" th:text="${#numbers.formatDecimal(i.book.price, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></td>
+                                                                 <td style="text-align:right" th:text="${#numbers.formatDecimal(((i.book.promotionPrice-i.book.price)*100/i.book.price), 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></td>
+                                                                 <td style="text-align:right" th:text="${#numbers.formatDecimal((i.price * i.quantity), 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></td>
+                                                            </tr>
+                                                      </th:block>
+                                                  </tbody>
+                                                  <tfoot>
+                                                       <tr>
+                                                            <th colspan="5">Tổng giá trị đơn hàng sau khuyến mãi <span style="font-size:12px">(Không bao gồm phí vận chuyển)</span></th>
+                                                            <th style="text-align:right" th:text="${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></th>
+                                                       </tr>
+                                                  </tfoot>
+                                             </table>
+                                        </div>
+                                        <!-- /.table-responsive-->
+                                   </div>
+                                   <!-- /.content-->
+                                   <div class="box-footer d-flex justify-content-between">
+                                        <a th:href="@{/order/check-out-3}" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i>Quay lại hình thức thanh toán</a>
+                                        <a th:href="@{/cart/index}" class="btn btn-outline-info">Trở về giỏ hàng</a>
+                                        <button type="submit" class="btn btn-primary">Đặt hàng ngay<i class="fa fa-chevron-right"></i></button>
+                                   </div>
+                              </form>
+                         </div>
+                         <!-- /.box-->
+                    </div>
+                    <!-- /.col-lg-9-->
+                    <div class="col-md-3">
+                         <div id="order-summary" class="card">
+                              <div class="card-header">
+                                   <h3 class="mt-4 mb-4">Đơn hàng dự kiến</h3>
+                              </div>
+                              <div class="card-body">
+                                   <div class="table-responsive">
+                                        <table class="table">
+                                             <tbody>
+                                             <tr>
+                                                  <td>Số sản phẩm</td>
+                                                  <th style="text-align:center"><span id="tQuantity" th:text="${#strings.toString(totalQuantity)}"> sản phẩm</span></th>
+                                             </tr>
+                                             <tr>
+                                                  <td>Giá trị đơn hàng</td>
+                                                  <th style="text-align:right">
+                                                            <span id="tPrice"
+                                                                  th:text="${#numbers.formatDecimal(totalPrice, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span></th>
+                                             </tr>
+                                             <tr>
+                                                  <td>Tổng khuyến mãi</td>
+                                                  <th style="text-align:right">
+                                                            <span id="tPromotion"
+                                                                  th:text="${#numbers.formatDecimal(totalPromotion, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span></th>
+                                             </tr>
+                                             <tr>
+                                                  <td>Sau khuyến mãi</td>
+                                                  <th style="text-align:right">
+                                                            <span id="Total"
+                                                                  th:text="${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span></th>
+                                             </tr>
+                                             <tr>
+                                                  <td>Phí vận chuyển</td>
+                                                  <th style="text-align:right"><span id="shippingCost" th:text="${#numbers.formatDecimal(shippingCost, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span> VNĐ</th>
+                                             </tr>
+                                             <tr class="total">
+                                                  <th>Thành tiền</th>
+                                                  <td style="text-align:right">
+                                                       <span id="realPrice"
+                                                             th:text="${#numbers.formatDecimal(realPrice, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span></td>
+                                             </tr>
+                                             </tbody>
+                                        </table>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+                    <!-- /.col-lg-3-->
+               </div>
+          </div>
+     </div>
+</div>
+</body>
+</html>

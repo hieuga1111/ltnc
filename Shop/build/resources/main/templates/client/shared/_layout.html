@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+     xmlns:th="https://www.thymeleaf.org">
+<head th:replace="client/shared/head :: head"></head>
+<body >
+     <!-- navbar-->
+     <header class="header mb-5">
+          <!--
+     *** TOPBAR ***
+     _________________________________________________________
+     -->
+          <div class="header_top" style="background: #e1e1e1">
+               <div class="container" style="display: flex;justify-content: space-between">
+                    <ul class="contactinfo nav nav-pills">
+                         <li>
+                              <i class='fa fa-phone'></i> 0985592699
+                         </li>
+                         <li style="margin-left: 10px;">
+                              <i class="fa fa-envelope"></i> nhomphattrien@gmail.com
+                         </li>
+                    </ul>
+                    <!-- Social links -->
+                    <ul class="social-icons"  style="display: flex;list-style: none;">
+                         <li>
+                              <a rel="nofollow" target="_blank">
+                                   <i class="fa fa-facebook"></i>
+                              </a>
+                         </li>
+                         <li>
+                              <a  rel="nofollow" target="_blank">
+                                   <i class="fa fa-google-plus"></i>
+                              </a>
+                         </li>
+                         <li>
+                              <a  rel="nofollow" target="_blank">
+                                   <i class="fa fa-twitter"></i>
+                              </a>
+                         </li>
+                         <li>
+                              <a  rel="nofollow" target="_blank">
+                                   <i class="fa fa-vk"></i>
+                              </a>
+                         </li>
+                         <li>
+                              <a  rel="nofollow" target="_blank">
+                                   <i class="fa fa-instagram"></i>
+                              </a>
+                         </li>
+                    </ul>
+               </div>
+          </div>
+
+          <!-- Link co icon-->
+          <div id="top_navbar" th:replace="client/shared/top_navbar :: top_navbar"> </div>
+          <div id="search" class="collapse">
+               <div class="container">
+                    <form role="search" class="ml-auto" action="#" th:action="@{/book-by/filter-by-name}" method="get">
+                         <div class="input-group">
+                              <input autocomplete=off type="search" name="name" placeholder="Tìm kiếm" class="form-control" id="search_box"  maxlength="30">
+                              <div class="input-group-append">
+                                   <button type="submit" class="btn btn-primary" id="search_btn"><i class="fa fa-search"></i></button>
+                              </div>
+                         </div>
+<!--                         <div class="autocomplete" id="listAutoComplete"></div>-->
+                    </form>
+               </div>
+          </div>
+<!--          <script th:src="@{/client/js/controller/autocompete.js}"></script>-->
+     </header>
+     <div class="container-fluid">
+          <div layout:fragment="content"> </div>
+          <hr />
+     </div>
+
+     <div th:replace="client/shared/footer :: footer"> </div>
+     <script th:src="@{/client/js/controller/userController.js}"></script>
+     <div layout:fragment="jsFooter"></div>
+</body>
+</html>

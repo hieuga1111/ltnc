@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="https://www.thymeleaf.org">
+<body>
+<hr />
+
+<div th:fragment="list_book (listBook)" class="container">
+    <div class="discounts-wrap">
+        <h3 class="component-ttl"><span>Được tải nhiều nhất</span></h3>
+        <div class="flexslider discounts-list">
+            <ul class="slides">
+                <th:block th:each="b : ${listBook}">
+                    <div th:replace="client/book/new :: card (book=${b})"></div>
+                </th:block>
+
+            </ul>
+        </div>
+        <div class="discounts-info">
+            <p>Nhanh chóng tải ngay!<br>Chỉ còn 2 ngày</p>
+            <a href="catalog-list.html">Tải ngay</a>
+        </div>
+    </div>
+    <th:block th:fragment="jsFooter">
+        <script>
+            addcartitem.init();
+        </script>
+    </th:block>
+</div>
+</body>
+</html>
